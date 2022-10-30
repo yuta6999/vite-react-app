@@ -8,7 +8,7 @@ import {
   ListItem,
   Text,
 } from '@chakra-ui/react';
-import { FaMosque, FaMountain, FaBomb, FaSkull } from "react-icons/fa";
+import { FaMosque, FaMountain, FaSkull, FaBomb } from "react-icons/fa";
 
 export interface WorldHeritage {
   id: number;
@@ -16,7 +16,7 @@ export interface WorldHeritage {
   region: string;
   year: string;
   registrationCriteria: string;
-  registrationDivision: [boolean, boolean, boolean, boolean];
+  registrationDivision: [isCulturalHeritage, isNaturalHeritage, isNegativeLegacy, inDanger];
   name: string;
   summary: string;
 }
@@ -28,8 +28,8 @@ type Props = {
 
 type isCulturalHeritage = boolean;
 type isNaturalHeritage = boolean;
-type inDanger = boolean;
 type isNegativeLegacy = boolean;
+type inDanger = boolean;
 
 const WorldHeritageList: FC<Props> = (props) => {
   const { groupName, WorldHeritages } = props;
@@ -43,17 +43,16 @@ const WorldHeritageList: FC<Props> = (props) => {
         {WorldHeritages.map((WorldHeritage) => (
           <ListItem key={WorldHeritage.id} m={6}>
             <Flex>
-              { WorldHeritage.registrationDivision[0] ? <FaMosque /> : '' }
+              {/* { WorldHeritage.registrationDivision[0] ? <FaMosque /> : '' }
               { WorldHeritage.registrationDivision[1] ? <FaMountain /> : '' }
-              { WorldHeritage.registrationDivision[2] ? <FaBomb /> : '' }
-              { WorldHeritage.registrationDivision[3] ? <FaSkull /> : '' }
+              { WorldHeritage.registrationDivision[2] ? <FaSkull /> : '' }
+              { WorldHeritage.registrationDivision[3] ? <FaBomb /> : '' } */}
               <Box textAlign="left" ml={3}>
-                <Text>{WorldHeritage.region}</Text>
-                <Text>{WorldHeritage.holdingCountry}</Text>
-                <Text>{WorldHeritage.year}</Text>
-                <Text>{WorldHeritage.registrationCriteria}</Text>
-                <Text>{WorldHeritage.name}</Text>
-                <Text>{WorldHeritage.summary}</Text>
+                <Text>■ {WorldHeritage.name}</Text>
+                <Text>・・・{WorldHeritage.summary}</Text>
+                <Text>保有国：{WorldHeritage.holdingCountry}</Text>
+                <Text>登録年：{WorldHeritage.year}年</Text>
+                <Text>登録基準：{WorldHeritage.registrationCriteria}</Text>
               </Box>
             </Flex>
           </ListItem>
