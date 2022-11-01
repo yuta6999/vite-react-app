@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Heading, Input, Button } from '@chakra-ui/react';
 import WorldHeritageList from './components/WorldHeritageList';
 import type { WorldHeritage } from './components/WorldHeritageList';
 import './App.css';
@@ -1162,12 +1163,14 @@ function App() {
     {id: 1154,region: '中南米・カリブ海地域',holdingCountry: 'メキシコ合衆国',year: '2018',registrationCriteria: '4,10',registrationDivision: [true, true, false, false],name: 'テワカンとクイカトランの渓谷：メソアメリカの起源となる環境',summary: '農作物栽培の初期の様子を示す考古遺跡',},
   ];
 
+  const [conditionValue, setConditionValue] = useState('スペイン');
   return (
     <div className="container">
       <Heading size="lg" as="h1" my={12}>
         世界遺産
       </Heading>
-      <WorldHeritageList groupName='日本の世界遺産' WorldHeritages={WorldHeritages} />
+      <Input placeholder='検索したい国名を入力' value={conditionValue} onChange={(event) => setConditionValue(event.target.value)}/>
+      <WorldHeritageList condition={conditionValue} WorldHeritages={WorldHeritages} />
     </div>
   )
 }
